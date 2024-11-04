@@ -12,7 +12,8 @@ class PatientService
     
     public function all()
     {
-        return $this->patientInterface->all();
+        $user = auth()->user();
+        return $this->patientInterface->all($user);
     }
 
     public function get($id)
@@ -38,6 +39,16 @@ class PatientService
     public function update($data) 
     {
         return $this->patientInterface->update($data);
+    }
+
+    public function getDoctors()
+    {
+        return $this->patientInterface->getDoctors();
+    }
+
+    public function delete($id)
+    {
+        return $this->patientInterface->delete($id);
     }
 
 }

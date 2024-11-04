@@ -17,15 +17,15 @@ Route::middleware([JwtMiddleware::class])->group(function () {
 
     Route::group(['prefix' => 'patient'], function() {
         Route::post('create', [PatientController::class, 'create']);
-        
-        
-
+        Route::get('get-doctors', [PatientController::class, 'getDoctors']);
+        Route::put('update', [PatientController::class, 'update']);
+        Route::get('get/{id}', [PatientController::class, 'get']);
+        Route::get('all', [PatientController::class, 'all']);
+        Route::delete('delete/{id}', [PatientController::class, 'delete']);
         Route::group(['prefix' => 'attendant', 'middleware' => ['role:attendant']], function () {
             Route::post('set-doctor', [PatientController::class, 'setDoctor']);
-            Route::get('all', [PatientController::class, 'all']);
-            Route::get('get/{id}', [PatientController::class, 'get']);
-            Route::put('update', [PatientController::class, 'update']);
         });
+       
     });
 
     

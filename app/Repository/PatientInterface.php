@@ -4,7 +4,7 @@ namespace App\Repository;
 
 interface PatientInterface 
 {
-    public function all();
+    public function all($user);
 
     public function get($id);
     
@@ -15,4 +15,8 @@ interface PatientInterface
     public function removeDoctor($data);
 
     public function update($data);
+
+    public function getDoctors();
+
+    public function delete($id);
 }

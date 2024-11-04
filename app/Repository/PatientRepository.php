@@ -9,19 +9,26 @@ use App\Models\User;
 class PatientRepository implements PatientInterface
 {
    
-    public function all()
+    public function all($user)
     {
-        return Patient::with('users')->get();
+        return Patient::with('users')
+        ->whereHas('users', function($query) use($user) {
+            if ($user->roles()->get()[0]->name == 'attendant' || $user->roles()->get()[0]->name == 'customer') return $query;
+            return $query->where('user_id', $user->id);
+        })->get();
     }
 
     public function get($id) 
     {
-        return Patient::find($id)->with('users')->get();
+        return Patient::find($id)->with('users')->get()[0];
     }
 
     public function create($payload) 
     {
-        return Patient::create($payload);
+        $patients =  Patient::create($payload);
+        $user = User::find($payload['doctor_id']);
+        $user->patients()->attach($patients->id);
+        return $patients;
     }
 
     public function setDoctor($data) 
@@ -46,6 +53,19 @@ class PatientRepository implements PatientInterface
         $patient->update($data);
         $user->patients()->detach($data['id']);
         return $patient->with('users')->get();
+    }
+
+    public function getDoctors()
+    {
+        $doctors = User::select('name', 'id')->whereHas('roles', function ($query) {
+            $query->where('name', 'doctor');
+        })->get();
+        return $doctors;
+    }
+
+    public function delete($id)
+    {
+        return Patient::destroy($id);
     }
 
 }

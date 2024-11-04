@@ -20,7 +20,7 @@ class PatientController extends Controller
 
     public function get($id)
     {
-        return $this->service->get($id);
+        return response()->json($this->service->get($id));
     }
 
     public function create(Request $request) 
@@ -37,6 +37,12 @@ class PatientController extends Controller
         return response()->json($data);
     }
 
+    public function getDoctors()
+    {
+        $data = $this->service->getDoctors();
+        return response()->json($data);
+    }
+
     public function removeDoctor(Request $request) 
     {
         $data = $request->json()->all();
@@ -49,6 +55,11 @@ class PatientController extends Controller
         $data = $request->json()->all();
         $data = $this->service->update($data);
         return response()->json($data);
+    }
+
+    public function delete($id)
+    {
+        return response()->json($this->service->delete($id));
     }
 
 
