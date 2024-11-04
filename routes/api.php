@@ -21,7 +21,7 @@ Route::middleware([JwtMiddleware::class])->group(function () {
         
 
         Route::group(['prefix' => 'attendant', 'middleware' => ['role:attendant']], function () {
-            Route::post('setDoctor', [PatientController::class, 'setDoctor']);
+            Route::post('set-doctor', [PatientController::class, 'setDoctor']);
             Route::get('all', [PatientController::class, 'all']);
             Route::get('get/{id}', [PatientController::class, 'get']);
             Route::put('update', [PatientController::class, 'update']);
