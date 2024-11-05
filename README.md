@@ -137,7 +137,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 ## Endpoint: Obter Informações de varios pacientes
 
 ### Método: `GET`
-### URL: `api/patient/attendant/all`
+### URL: `api/patient/all`
 
 ### Descrição
 Este endpoint permite obter as informações do usuário autenticado. É necessário enviar um token de autenticação no cabeçalho da requisição.
@@ -151,7 +151,7 @@ Este endpoint permite obter as informações do usuário autenticado. É necess�
 ### Exemplo de Requisição
 
 ```http
-GET api/patient/attendant/all
+GET api/patient/all
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 
 ```
@@ -160,7 +160,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 ## Endpoint: Obter Informações de um paciente
 
 ### Método: `GET`
-### URL: `api/patient/attendant/get/{id}`
+### URL: `api/patient/get/{id}`
 
 ### Descrição
 Este endpoint permite obter as informações do usuário autenticado. É necessário enviar um token de autenticação no cabeçalho da requisição.
@@ -180,7 +180,54 @@ Este endpoint permite obter as informações do usuário autenticado. É necess�
 ### Exemplo de Requisição
 
 ```http
-GET api/patient/attendant/all
+GET api/patient/all
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+
+```
+
+
+## Endpoint: Obter Informações de um paciente
+
+### Método: `GET`
+### URL: `api/patient/get-doctors/`
+
+### Descrição
+Este endpoint permite obter as informações dos medicos veterinários cadastrados no sistema.
+
+### Cabeçalhos da Requisição
+
+| Cabeçalho         | Tipo   | Obrigatório | Descrição                       |
+|-------------------|--------|-------------|---------------------------------|
+| `Authorization`   | String | Sim         | Token Bearer do usuário. Exemplo: `Bearer {token}` |
+
+
+### Exemplo de Requisição
+
+```http
+GET api/patient/all
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+
+```
+
+## Endpoint: Excluir uma consultat
+
+### Método: `GET`
+### URL: `api/patient/delete`
+
+### Descrição
+Este endpointt permite realizar a exclusão de uma consulta.
+
+### Cabeçalhos da Requisição
+
+| Cabeçalho         | Tipo   | Obrigatório | Descrição                       |
+|-------------------|--------|-------------|---------------------------------|
+| `Authorization`   | String | Sim         | Token Bearer do usuário. Exemplo: `Bearer {token}` |
+
+
+### Exemplo de Requisição
+
+```http
+GET api/patient/delete
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 
 ```
